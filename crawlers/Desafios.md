@@ -1,0 +1,10 @@
+## Dificuldades iniciais
+
+* Não possuir conhecimento prévio de web scrapping.
+* Não possuir conhecimento prévio da API do telegram.
+
+## Passo a passo
+O primeiro objetivo foi aprender uma biblioteca de web scrapping, a escolha foi a beautifulsoup4 por possuir uma boa documentação. Após entender as funções básicas da biblioteca o objetivo foi entender como eram estruturadas as páginas do Reddit, mais especificamente as páginas de subreddits. Com o conhecimento adquirido até então foram criadas as funções para extração das informações onde a função getData(thread, source) recebe o nome da thread e o HTML bruto e retorna as informações, e a função returnInfos(threadList) que recebe uma string com os subreddits a serem pesquisados, separa em uma lista e faz um loop chamando a função getData(thread, source), que poderia receber apenas o parâmetro source e extrair o nome da thread internamente, porém, a função anterior já possuía esta informação então não havia necessidade de gastar processamento extra para extraí-la novamente.
+Com as funções de extração prontas foi criado o arquivo 'run.py' para executar a aplicação via CLI em um código separado de forma mais organizada.
+Após a aplicação via CLI estar pronta, o objetivo seguinte foi estudar a API de bots do telegram e depois de um tempo de pesquisa foi escolhida a biblioteca telepot para auxiliar na criação do bot, a opção se deve ao fato de ser simples e ter uma boa documentação para consulta. O arquivo 'telegram_bot.py' foi criado e a lógica por trás é simples. Foi criada uma função similar ao funcionamento do arquivo 'run.py' que recebe o texto da mensagem e passa para a função returnInfos(threadList), ao responder, as informações são enviadas isoladamente através de um loop como resposta do bot. Há também um comando para escutar as mensagens recebidas pelo bot e um algoritmo de loop infinito para manter o arquivo em execução, caso contrário o bot não ficaria ativo.
+Os testes unitários foram desenvolvidos através do módulo unittest, nativo da linguagem python, durante o desenvolvimento das funções e foram utilizados alguns HTML's mockados para a comparação das respostas.

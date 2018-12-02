@@ -1,31 +1,64 @@
-# Desafio 2: Crawlers
+## Arquivos principais
+A aplicação possui 4 arquivos principais. 'crawler.py' contém as funções de scrapping das páginas do reddit, 'run.py' contém a chamada de execução da aplicação via CLI, 'telegram_bot.py' contém as instruções para o bot do telegram e 'test_crawler.py' contém a classe de testes.
 
-Parte do trabalho na IDwall inclui desenvolver *crawlers/scrapers* para coletar dados de websites.
-Como nós nos divertimos trabalhando, às vezes trabalhamos para nos divertir!
+## Outros arquivos
+'README.md' contém este texto em formato markdown, 'invalid_mock_html.html' e 'mock_html.html' contém exemplos de páginas mockadas para os testes unitários, 'requirements.txt' contém a lista dos pacotes necessários para a execução desta aplicação, 'dockerfile' contém as instruções à serem enviadas ao docker no momento de buildar o container e 'Desafios.md' contém o processo de resolução 
 
-O Reddit é quase como um fórum com milhares de categorias diferentes. Com a sua conta, você pode navegar por assuntos técnicos, ver fotos de gatinhos, discutir questões de filosofia, aprender alguns life hacks e ficar por dentro das notícias do mundo todo!
+## Requisitos
+É necessário ter o python na máquina para rodar o projeto. Caso esteja sendo usado Linux ou Mac, provavelmente já está instalado, caso não esteja, ou seja uma máquina Windows, é possível fazer o download no site oficial da linguagem: https://www.python.org/downloads/
+É necessário também utilizar o pip (gerenciador de pacotes python) para a instalação das dependências que pode ser instalado através das instruções do site: https://pip.pypa.io/en/stable/installing/.
+Após a instalação do python é necessário instalar via pip os requisitos através seguinte do comando:
+```bash
+pip install requirements.txt
+```
 
-Subreddits são como fóruns dentro do Reddit e as postagens são chamadas *threads*.
+## Bot
+O bot utilizado nesta aplicação chama-se *OldRedditCrawler*, é possível encontrá-lo dentro do telegram no campo de busca. Ao informar ao bot o comando /nadaparafazer seguido de uma lista de subreddits, o bot retornara depois de alguns segundos as informações.
+Exemplo:
+```bash
+/nadaparafazer worldnews;soccer;europe
+```
 
-Para quem gosta de gatos, há o subreddit ["/r/cats"](https://www.reddit.com/r/cats) com threads contendo fotos de gatos fofinhos.
-Para *threads* sobre o Brasil, vale a pena visitar ["/r/brazil"](https://www.reddit.com/r/brazil) ou ainda ["/r/worldnews"](https://www.reddit.com/r/worldnews/).
-Um dos maiores subreddits é o "/r/AskReddit".
+## Comandos
+Assumindo que os requisitos foram cumpridos, seguem os comandos para...
 
-Cada *thread* possui uma pontuação que, simplificando, aumenta com "up votes" (tipo um like) e é reduzida com "down votes".
+#### Executar a aplicação via CLI
+```bash
+python3 run.py
+```
+Após a exibição da mensagem passa-se como parâmetro uma lista de subreddits, por exemplo:
+```bash
+worldnews;soccer;europe
+```
 
-Sua missão é encontrar e listar as *threads* que estão bombando no Reddit naquele momento!
-Consideramos como bombando *threads* com 5000 pontos ou mais.
+#### Executar o bot do telegram localmente
+```bash
+python3 telegram_bot.py
+```
 
-## Entrada
-- Lista com nomes de subreddits separados por ponto-e-vírgula (`;`). Ex: "askreddit;worldnews;cats"
+#### Executar os testes
+```bash
+python3 -m unittest test_crawler.py 
+```
 
-### Parte 1
-Gerar e imprimir uma lista contendo número de upvotes, subreddit, título da thread, link para os comentários da thread, link da thread.
-Essa parte pode ser um CLI simples, desde que a formatação da impressão fique legível.
+A classe de testes contém 4 métodos com as seguintes finalidades:
+* Testar se as informações corretas das threads estão sendo retornadas
+* Testar se a mensagem de erro correta é enviada quando uma thread é inválida
+* Testar se o input da lista de threads está vazio
+* Testar se há algum caractere inválido em algum elemento da lista de threads
 
-### Parte 2
-Construir um robô que nos envie essa lista via Telegram sempre que receber o comando `/NadaPraFazer [+ Lista de subrredits]` (ex.: `/NadaPraFazer programming;dogs;brazil`)
-
-### Dicas
- - Use https://old.reddit.com/
- - Qualquer método para coletar os dados é válido. Caso não saiba por onde começar, procure por JSoup (Java), SeleniumHQ (Java), PhantomJS (Javascript) e Beautiful Soup (Python).
+## Docker
+Para executar a aplicação via docker não são necessárias as instalações mencionadas no tópico 'requisitos', porém, é necessário a instalação e configuração do mesmo na máquina. O download pode ser feito através do site oficial 'https://www.docker.com/products/docker-desktop'.
+Com o docker instalado, é feita a criação do container através do seguinte comando:
+```bash
+docker build -t nome_do_container .
+```
+Lembrando que é necessário estar no mesmo diretório do arquivo dockerfile, caso contrário, no lugar do . é necessário passar seu caminho.
+Após a criação do container, pode-se obter seu ID através do seguinte comando:
+```bash
+docker images
+```
+Com o ID, é possível executá-lo através do seguinte comando:
+```bash
+docker run -it ID
+```

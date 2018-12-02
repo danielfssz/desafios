@@ -1,35 +1,32 @@
-# Desafio 1: Strings
+## Arquivos principais
+A aplicação possui 3 arquivos. 'wrap.py' contém o método de quebra das strings, 'run.py' contém a chamada de execução da aplicação e 'test_wrap.py' contém a classe de testes.
 
-Após ler o coding style do kernel Linux, você descobre a mágica que é
-ter linhas de código com no máximo 80 caracteres cada uma.
+## Outros arquivos
+'README.md' contém este texto em formato markdown e 'Desafios.md' contém o processo de resolução deste desafio.
 
-Assim, você decide que de hoje em diante seus e-mails enviados também
-seguirão um padrão parecido e resolve desenvolver um plugin para te ajudar
-com isso. Contudo, seu plugin aceitará no máximo 40 caracteres por linha.
+## Requisitos
+É necessário ter o python na máquina para rodar o projeto. Caso esteja sendo usado Linux ou Mac, provavelmente já está instalado, caso não esteja, ou seja uma máquina Windows, é possível fazer o download no site oficial da linguagem: https://www.python.org/downloads/
 
-Implemente uma função que receba:
-1. um texto qualquer
-2. um limite de comprimento
+## Comandos
+Assumindo que o python está instalado e está no path do sistema, seguem os comandos para...
 
-e seja capaz de gerar os outputs dos desafios abaixo.
+##### Executar a aplicação
+```bash
+python3 run.py
+```
+Primeiro é necessário passar o texto à ser formatado, em seguida o número máximo de colunas em que o mesmo terá e por fim, informar se o texto deverá estar justificado ou não.
+O retorno da aplicação será o texto formatado com as configurações passadas no parâmetro.
 
-## Exemplo input
+##### Executar os testes
+```bash
+python3 -m unittest test_wrap.py
+```
 
-`In the beginning God created the heavens and the earth. Now the earth was formless and empty, darkness was over the surface of the deep, and the Spirit of God was hovering over the waters.`
-
-`And God said, "Let there be light," and there was light. God saw that the light was good, and he separated the light from the darkness. God called the light "day," and the darkness he called "night." And there was evening, and there was morning - the first day.`
-
-O texto deve ser parametrizável e se quiser, pode utilizar um texto de input de sua preferência.
-
-### Parte 1 (Básico) - limite 40 caracteres
-Você deve seguir o exemplo de output [deste arquivo](https://github.com/idwall/desafios/blob/master/strings/output_parte1.txt), onde basta o texto possuir, no máximo, 40 caracteres por linha. As palavras não podem ser quebradas no meio.
-
-### Parte 2 (Intermediário) - limite 40 caracteres
-O exemplo de output está [neste arquivo](https://github.com/idwall/desafios/blob/master/strings/output-parte2.txt), onde além de o arquivo possuir, no máximo, 40 caracteres por linha, o texto deve estar **justificado**.
-
-### Dicas
-- Existe um template para projetos em Java ;)
-
-### Extras
-
-- Parametrização da quantidade de caracteres por linha.
+A classe de testes contém 7 métodos com as seguintes finalidades:
+* Testar se o texto do input é uma variável do tipo string
+* Testar se o número do input não é uma variável do tipo string
+* Testar se o número do input não é uma variável de valor negativo
+* Testar se o texto do input não está vazio
+* Testar se o número do input não está vazio
+* Testar se o número de caracteres por linha não é maior que o informado pelo usuário quando a flag de justificação é falsa
+* Testar se o número de caracteres por linha é sempre igual ao número do input quando a flag de justificação é verdadeira

@@ -1,0 +1,9 @@
+FROM python:3.7.1-stretch
+
+RUN mkdir bot
+COPY . /bot
+WORKDIR /bot
+
+RUN pip3 install -r requirements.txt
+
+ENTRYPOINT python3 telegram_bot.py
