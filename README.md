@@ -3,5 +3,5 @@ Dentro das pastas Crawler e Strings estão os desafios de crawler e strings resp
 
 ## Desafios
 É possível acessar diretamente os arquivos de desafios nos links abaixo:
-* [Strings](Strins/Desafios.md)
-* [Crawler](Crawler.md)
+* [Strings](Strings/Desafios.md)
+* [Crawler](Crawler/Desafios.md)
